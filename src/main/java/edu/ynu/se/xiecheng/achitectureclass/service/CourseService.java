@@ -16,13 +16,10 @@ import javax.annotation.Resource;
 
 @Service
 public class CourseService extends LogicService<Course,Long> {
-
     @Resource
     private CourseDao courseDao;
-
     public CourseService(@Autowired CourseDao dao) {
         super(dao);
         this.courseDao = dao;
     }
-
 }

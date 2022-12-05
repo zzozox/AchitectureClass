@@ -1,17 +1,21 @@
 package edu.ynu.se.xiecheng.achitectureclass.common.service;
 
-import edu.ynu.se.xiecheng.achitectureclass.common.dao.LogicRepository;
+import edu.ynu.se.xiecheng.achitectureclass.common.dao.LogicDAO;
 import edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class LogicService<T extends LogicEntity, ID extends Serializable>{
 
-    public LogicService(LogicRepository<T,ID> lr){
+    public LogicService(LogicDAO<T,ID> lr){
         this.logicRepository = lr;
     }
-    protected LogicRepository<T,ID> logicRepository;
+    protected LogicDAO<T,ID> logicRepository;
 
     public T  GET(ID id){
         return logicRepository.getReferenceById(id);
@@ -21,7 +25,18 @@ public class LogicService<T extends LogicEntity, ID extends Serializable>{
        return logicRepository.findAll();
     }
 
-    public T  PUT(T  entity){
+    /**
+     * 基础的分页查询
+     * @param page 第几页
+     * @param size 每页的大小
+     * @return 返回一个分页集合
+     */
+    public Page<T> getAll(int page, int size){
+        Pageable pageable = PageRequest.of(page,size, Sort.by("createTime").descending());
+        return logicRepository.findAll(pageable);
+    }
+
+    public T  PUT(T entity){
        return logicRepository.save(entity);
     }
 

@@ -4,9 +4,11 @@ import edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity;
 import edu.ynu.se.xiecheng.achitectureclass.common.service.LogicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.Serializable;
 import java.util.List;
@@ -22,7 +24,7 @@ public abstract class BaseController<T extends LogicEntity, ID extends Serializa
 
     @GetMapping("/get")
     @ApiOperation("通过ID获取实体")
-    public T GET(ID id){
+    public T GET(@RequestParam ID id){
         return logicService.GET(id);
     }
 
@@ -30,6 +32,12 @@ public abstract class BaseController<T extends LogicEntity, ID extends Serializa
     @GetMapping("/getall")
     public List<T> getAll(){
         return logicService.getAll();
+    }
+
+    @ApiOperation("分页获取所有实体")
+    @GetMapping("/getallPage")
+    public Page<T> getAll(@RequestParam int page, @RequestParam int size){
+        return logicService.getAll(page,size);
     }
 
     @ApiOperation("修改实体")
@@ -52,7 +60,7 @@ public abstract class BaseController<T extends LogicEntity, ID extends Serializa
 
     @ApiOperation("通过ID删除实体")
     @GetMapping("/delete")
-    public void DELETE(ID id){
+    public void DELETE(@RequestParam ID id){
         logicService.DELETE(id);
     }
 }

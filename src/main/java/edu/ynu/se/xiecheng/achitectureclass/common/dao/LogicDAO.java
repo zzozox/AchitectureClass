@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 
 @NoRepositoryBean
-public interface LogicRepository<T extends LogicEntity, ID extends Serializable> extends JpaRepository<T,ID> {
+public interface LogicDAO<T extends LogicEntity, ID extends Serializable> extends JpaRepository<T,ID> {
     @Override
     @Query(value = "update #{#entityName} e set e.isDeleted =1, e.deletedTime = current_timestamp where e.id = ?1 and e.isDeleted = 0")
     @Transactional

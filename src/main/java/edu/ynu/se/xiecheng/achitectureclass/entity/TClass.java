@@ -1,6 +1,7 @@
 package edu.ynu.se.xiecheng.achitectureclass.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity;
 import lombok.Data;
@@ -55,6 +56,7 @@ public class TClass extends LogicEntity {
         return result.get();
     }
 
+    @JsonIgnore
     public Selection getSelection(Student stu){
         AtomicReference<Selection> result = new AtomicReference<>(null);
         selections.forEach(selection -> {

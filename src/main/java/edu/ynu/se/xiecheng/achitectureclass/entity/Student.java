@@ -1,5 +1,6 @@
 package edu.ynu.se.xiecheng.achitectureclass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +34,7 @@ public class Student extends User{
     private Set<Selection> selections;
 
 
+    @JsonIgnore
     public Selection select(TClass cls){
         /**
          *   教学班已经满了，不能再选课。
@@ -52,6 +54,7 @@ public class Student extends User{
         return selection;
     }
 
+    @JsonIgnore
     public List<TClass> getMyClasses(){
        List<TClass> classes = new ArrayList<>();
         selections.forEach(selection -> {

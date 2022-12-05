@@ -12,7 +12,10 @@ import java.io.Serializable;
 @NoRepositoryBean
 public interface LogicDAO<T extends LogicEntity, ID extends Serializable> extends JpaRepository<T,ID> {
     @Override
-    @Query(value = "update #{#entityName} e set e.isDeleted =1, e.deletedTime = current_timestamp where e.id = ?1 and e.isDeleted = 0")
+    @Query(value =
+            "update #{#entityName} e " +
+                    "set e.isDeleted =1, e.deletedTime = current_timestamp " +
+                    "where e.id = ?1 and e.isDeleted = 0")
     @Transactional
     @Modifying
     void deleteById(ID id);;

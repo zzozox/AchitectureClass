@@ -18,26 +18,20 @@ import java.util.List;
 
 @Service
 public class TClassService extends LogicService<TClass,Long> {
-
     @Resource
     private TClassDao tClassDao;
-
     @Resource
     private TeacherDao teacherDao;
-
     @Resource
     private CourseDao courseDao;
-
     public TClassService(@Autowired TClassDao dao) {
         super(dao);
         this.tClassDao = dao;
     }
-
     public List<Student> listStudents(Long cls_id){
         TClass cls=tClassDao.getReferenceById(cls_id);
         return cls.listStudents();
     }
-
     public Teacher assignTeacher(Long cls_id, Long t_id){
         TClass cls=tClassDao.getReferenceById(cls_id);
         Teacher teacher=teacherDao.getReferenceById(t_id);
@@ -45,7 +39,6 @@ public class TClassService extends LogicService<TClass,Long> {
         tClassDao.save(cls);
         return  teacher;
     }
-
     public Course assignCourse(Long c_id, Long cls_id){
         Course course=courseDao.getReferenceById(c_id);
         TClass cls=tClassDao.getReferenceById(cls_id);
@@ -53,5 +46,4 @@ public class TClassService extends LogicService<TClass,Long> {
         tClassDao.save(cls);
         return course;
     }
-
 }

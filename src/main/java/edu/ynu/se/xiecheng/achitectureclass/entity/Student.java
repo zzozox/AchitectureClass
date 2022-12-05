@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,6 +22,8 @@ public class Student extends User{
     private String grade;
     @Column
     private String school;
+
+
 
     @OneToMany(mappedBy = "student",
             fetch = FetchType.LAZY,
@@ -47,6 +51,16 @@ public class Student extends User{
         selections.add(selection);
         return selection;
     }
+
+    public List<TClass> getMyClasses(){
+       List<TClass> classes = new ArrayList<>();
+        selections.forEach(selection -> {
+            classes.add(selection.getTclass());
+        });
+        return classes;
+    }
+
+
 
     public Selection withdraw(TClass cls){
         cls.getSelections().remove(cls.getSelection(this));

@@ -32,13 +32,14 @@ public class Teacher extends User{
      * @param stu 学生
      * @param midScore 期中成绩
      */
-    public void rankMidScore(TClass cls, Student stu, Double midScore){
+    public Selection rankMidScore(TClass cls, Student stu, Double midScore){
         /** 不是自己的教学班，不能打分 */
         if (!clses.contains(cls))
-            return;
+            return null;
 
         /** 设置期中成绩 */
        Selection selection = cls.getSelection(stu);
        selection.setMidScore(midScore);
+       return selection;
     }
 }

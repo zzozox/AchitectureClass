@@ -23,5 +23,4 @@ public class TClassDTO {
     private Integer courseCreditHours;
     /** 这里指的是Course.credit  */
     private String courseCredit;
-
 }

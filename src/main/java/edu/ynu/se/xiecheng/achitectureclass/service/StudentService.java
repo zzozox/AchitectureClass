@@ -58,4 +58,14 @@ public class StudentService extends LogicService<Student,Long> {
         Student stu = studentDao.getReferenceById(stu_id);
         return stu.getMyClasses();
     }
+
+    /**
+     * 获取学生的课程表
+     * @param stu_id
+     * @return
+     */
+    public List<List<String>> getTimeTable(Long stu_id){
+        Student stu = studentDao.getReferenceById(stu_id);
+        return stu.getTimeTable();
+    }
 }

@@ -51,12 +51,18 @@ public class StudentController extends BaseController<Student,Long> {
        return studentService.withDraw(stu_id,cls_id);
     }
 
-    @ApiOperation("我的课程")
+    @ApiOperation("我的课程-DTO版")
     @GetMapping("/myClasses")
     public List<TClassDTO> getMyClasses(@ApiParam("学号") Long stu_id){
         List<TClass> results=studentService.getMyClasses(stu_id);
         return results.stream().map(
                     cls -> modelMapper.map(cls, TClassDTO.class)
                 ).collect(Collectors.toList());
+    }
+
+    @ApiOperation("我的课程-DO版")
+    @GetMapping("/myClassesDTO")
+    public List<TClass> getMyClassesDTO(@ApiParam("学号") Long stu_id){
+       return  studentService.getMyClasses(stu_id);
     }
 }

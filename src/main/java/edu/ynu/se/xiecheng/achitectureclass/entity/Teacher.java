@@ -1,7 +1,6 @@
 package edu.ynu.se.xiecheng.achitectureclass.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,7 +37,7 @@ public class Teacher extends User{
             return null;
 
         /** 设置期中成绩 */
-       Selection selection = cls.getSelection(stu);
+       Selection selection = cls.findSelection(stu);
        selection.setMidScore(midScore);
        return selection;
     }

@@ -44,7 +44,7 @@ public class Student extends User{
         /**
          * 教学班已经选过了，不能重复选课。
          */
-        Selection selection = cls.getSelection(this);
+        Selection selection = cls.findSelection(this);
         if (selection!=null)
             return selection;
         selection = new Selection();
@@ -55,7 +55,7 @@ public class Student extends User{
     }
 
     @JsonIgnore
-    public List<TClass> getMyClasses(){
+    public List<TClass> listMyClasses(){
        List<TClass> classes = new ArrayList<>();
         selections.forEach(selection -> {
             classes.add(selection.getTclass());
@@ -69,7 +69,7 @@ public class Student extends User{
      * @return
      */
     @JsonIgnore
-    public List<List<String>> getTimeTable(){
+    public List<List<String>> listTimeTable(){
         List<TClass> classes = new ArrayList<>();
         selections.forEach(selection -> {
             classes.add(selection.getTclass());
@@ -93,7 +93,7 @@ public class Student extends User{
 
 
     public Selection withdraw(TClass cls){
-        cls.getSelections().remove(cls.getSelection(this));
-        return cls.getSelection(this);
+        cls.getSelections().remove(cls.findSelection(this));
+        return cls.findSelection(this);
     }
 }

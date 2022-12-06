@@ -2,6 +2,7 @@ package edu.ynu.se.xiecheng.achitectureclass.common.service;
 
 import edu.ynu.se.xiecheng.achitectureclass.common.dao.LogicDAO;
 import edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity;
+import edu.ynu.se.xiecheng.achitectureclass.common.utils.UpdateTool;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +31,12 @@ public class LogicService<T extends LogicEntity, ID extends Serializable>{
         return logicRepository.findAll(pageable);
     }
     public T  PUT(T entity){
+        T sourceEntity = logicRepository.getReferenceById((ID)entity.getId());
+        System.out.println("ID:"+sourceEntity.getId());
+        /**
+         * 支持部分字段更新
+         */
+        UpdateTool.copyNullProperties(sourceEntity, entity);
        return logicRepository.save(entity);
     }
     public T  POST(T  entity){

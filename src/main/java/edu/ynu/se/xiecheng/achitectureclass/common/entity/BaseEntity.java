@@ -3,6 +3,7 @@ package edu.ynu.se.xiecheng.achitectureclass.common.entity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @MappedSuperclass
+@DynamicUpdate
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity{
     @Id

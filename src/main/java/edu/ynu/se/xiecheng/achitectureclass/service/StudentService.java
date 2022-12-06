@@ -56,7 +56,7 @@ public class StudentService extends LogicService<Student,Long> {
      */
     public List<TClass> getMyClasses(Long stu_id){
         Student stu = studentDao.getReferenceById(stu_id);
-        return stu.getMyClasses();
+        return stu.listMyClasses();
     }
 
     /**
@@ -66,6 +66,6 @@ public class StudentService extends LogicService<Student,Long> {
      */
     public List<List<String>> getTimeTable(Long stu_id){
         Student stu = studentDao.getReferenceById(stu_id);
-        return stu.getTimeTable();
+        return stu.listTimeTable();
     }
 }

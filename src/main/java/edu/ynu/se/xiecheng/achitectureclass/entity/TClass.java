@@ -55,7 +55,6 @@ public class TClass extends LogicEntity {
         return result.get();
     }
 
-    @JsonIgnore
     public Selection findSelection(Student stu){
         AtomicReference<Selection> result = new AtomicReference<>(null);
         selections.forEach(selection -> {

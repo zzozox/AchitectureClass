@@ -54,7 +54,6 @@ public class Student extends User{
         return selection;
     }
 
-    @JsonIgnore
     public List<TClass> listMyClasses(){
        List<TClass> classes = new ArrayList<>();
         selections.forEach(selection -> {
@@ -68,13 +67,8 @@ public class Student extends User{
      * 获取我的课程表
      * @return
      */
-    @JsonIgnore
     public List<List<String>> listTimeTable(){
-        List<TClass> classes = new ArrayList<>();
-        selections.forEach(selection -> {
-            classes.add(selection.getTclass());
-        });
-
+        List<TClass> classes = this.listMyClasses();
         List<List<String>> table = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             List<String> courses =new ArrayList<>();
@@ -85,7 +79,10 @@ public class Student extends User{
         }
         classes.forEach(cls->{
             table.get(Integer.parseInt(cls.getTWeek())).
-                    set(Integer.parseInt(cls.getTTime()),cls.getCourse().getCourseName()+" "+cls.getRoom()+" "+cls.getTeacher().getTeacherName());
+                    set(Integer.parseInt(cls.getTTime()),
+                            cls.getCourse().getCourseName()+" "
+                                    +cls.getRoom()+" "
+                                    +cls.getTeacher().getTeacherName());
         });
         return table;
     }
@@ -93,7 +90,8 @@ public class Student extends User{
 
 
     public Selection withdraw(TClass cls){
-        cls.getSelections().remove(cls.findSelection(this));
-        return cls.findSelection(this);
+        Selection selection = cls.findSelection(this);
+        cls.getSelections().remove(selection);
+        return selection;
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 
 @NoRepositoryBean
-public interface LogicDAO<T extends LogicEntity, ID extends Serializable> extends JpaRepository<T,ID> {
+public interface LogicDAO<T extends LogicEntity, ID extends Serializable> extends JpaRepository<T, ID> {
     @Override
     @Query(value =
             "update #{#entityName} e " +

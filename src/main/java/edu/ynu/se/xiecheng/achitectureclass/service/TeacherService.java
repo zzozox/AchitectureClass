@@ -1,7 +1,6 @@
 package edu.ynu.se.xiecheng.achitectureclass.service;
 
 import edu.ynu.se.xiecheng.achitectureclass.common.service.LogicService;
-import edu.ynu.se.xiecheng.achitectureclass.dao.CourseDao;
 import edu.ynu.se.xiecheng.achitectureclass.dao.StudentDao;
 import edu.ynu.se.xiecheng.achitectureclass.dao.TClassDao;
 import edu.ynu.se.xiecheng.achitectureclass.dao.TeacherDao;
@@ -13,9 +12,8 @@ import javax.annotation.Resource;
 
 
 @Service
-public class TeacherService extends LogicService<Teacher,Long> {
-    @Resource
-    private TeacherDao teacherDao;
+public class TeacherService extends LogicService<TeacherDao,Teacher,Long> {
+
     @Resource
     private StudentDao studentDao;
     @Resource
@@ -23,15 +21,14 @@ public class TeacherService extends LogicService<Teacher,Long> {
 
     public TeacherService(@Autowired TeacherDao dao) {
         super(dao);
-        this.teacherDao = dao;
     }
 
     public Selection rankMidScore(Long t_id, Long cls_id, Long stu_id, Double midScore){
-        Teacher teacher = teacherDao.getReferenceById(t_id);
+        Teacher teacher = getDAO().getReferenceById(t_id);
         Student student = studentDao.getReferenceById(stu_id);
         TClass tClass = tClassDao.getReferenceById(cls_id);
         Selection selection = teacher.rankMidScore(tClass,student,midScore);
-        teacherDao.save(teacher);
+        getDAO().save(teacher);
         return selection;
     }
 

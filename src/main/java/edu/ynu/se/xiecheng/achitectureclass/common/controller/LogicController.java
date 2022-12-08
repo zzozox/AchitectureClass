@@ -1,5 +1,6 @@
 package edu.ynu.se.xiecheng.achitectureclass.common.controller;
 
+import edu.ynu.se.xiecheng.achitectureclass.common.dao.LogicDAO;
 import edu.ynu.se.xiecheng.achitectureclass.common.entity.LogicEntity;
 import edu.ynu.se.xiecheng.achitectureclass.common.service.LogicService;
 import io.swagger.annotations.Api;
@@ -13,47 +14,50 @@ import java.util.List;
 
 @Api(tags ="基础Controller")
 @CrossOrigin
-public abstract class BaseController<T extends LogicEntity, ID extends Serializable>{
-    protected LogicService<T,ID> logicService;
-    public BaseController(LogicService<T,ID> ls){
-        this.logicService = ls;
+public abstract class LogicController<S extends  LogicService<D,T,ID>, D extends LogicDAO<T,ID>,T extends LogicEntity, ID extends Serializable>{
+    protected S service;
+    protected S getService(){
+        return service;
+    }
+    public LogicController(S ls){
+        this.service = ls;
     }
     @GetMapping("/get")
     @ApiOperation("通过ID获取实体")
     public T GET(@RequestParam ID id){
-        return logicService.GET(id);
+        return service.GET(id);
     }
     @ApiOperation("获取所有实体")
     @GetMapping("/getall")
     public List<T> getAll(){
-        return logicService.getAll();
+        return service.getAll();
     }
     @ApiOperation("分页获取所有实体")
     @GetMapping("/getallPage")
     public Page<T> getAll(@RequestParam int page, @RequestParam int size){
-        return logicService.getAll(page,size);
+        return service.getAll(page,size);
     }
     @ApiOperation("修改实体")
     @PostMapping("/put")
     public T PUT(@RequestBody T entity){
-        return logicService.PUT(entity);
+        return service.PUT(entity);
     }
 
     @ApiOperation("创建实体")
     @PostMapping("/post")
     public T POST(@RequestBody T  entity){
-        return logicService.POST(entity);
+        return service.POST(entity);
     }
 
     @ApiOperation("删除实体")
     @PostMapping("/delete")
     public void DELETE(@RequestBody T entity){
-        logicService.DELETE(entity);
+        service.DELETE(entity);
     }
 
     @ApiOperation("通过ID删除实体")
     @GetMapping("/delete")
     public void DELETE(@RequestParam ID id){
-        logicService.DELETE(id);
+        service.DELETE(id);
     }
 }

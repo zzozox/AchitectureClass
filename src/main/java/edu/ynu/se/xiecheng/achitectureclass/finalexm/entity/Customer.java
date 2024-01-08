@@ -42,7 +42,8 @@ public class Customer extends User {
              */
             if(!tempOrder.isPayState()&&(tempOrder.getShop().equals(shopItem.getShop()))){
                 tempOrder.addItem(shopItem,quantity);
-                tempOrder.setTotalPrice(tempOrder.getTotalPrice()+shopItem.getShopItemPrice()*quantity);
+                tempOrder.setTotalPrice(tempOrder.getTotalPrice()
+                        +shopItem.getShopItemPrice()*quantity);
                 return tempOrder;
             }
         }

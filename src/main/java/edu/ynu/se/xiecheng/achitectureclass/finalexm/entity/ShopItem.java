@@ -35,5 +35,4 @@ public class ShopItem extends LogicEntity {
     @JsonIgnoreProperties("shopItem")
     @JsonIgnore
     private Set<LineItem> lineItems;
-
 }

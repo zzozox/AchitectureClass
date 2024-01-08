@@ -24,7 +24,6 @@ public class CustomerService extends LogicService<CustomerDao, Customer,Long> {
 
     /**
      * 顾客登录
-     * 登陆成功则返回值为0
      * @param customerName
      * @param password
      * @return

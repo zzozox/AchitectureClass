@@ -26,7 +26,6 @@ public class BusinessService extends LogicService<BusinessDao, Business,Long> {
     OrderDao orderDao;
     /**
      * 商家登录
-     * 登陆成功则返回值为1
      * @param businessName
      * @param password
      * @return
@@ -37,7 +36,7 @@ public class BusinessService extends LogicService<BusinessDao, Business,Long> {
     }
 
     /**
-     * 查看门店
+     * 列出商家门店
      * @param businessId
      * @return
      */
@@ -48,7 +47,7 @@ public class BusinessService extends LogicService<BusinessDao, Business,Long> {
     }
 
     /**
-     * 新建门店
+     * 商家新建门店
      * @param shop
      * @param businessId
      * @return
@@ -62,7 +61,7 @@ public class BusinessService extends LogicService<BusinessDao, Business,Long> {
     }
 
     /**
-     * 新建商品
+     * 商家新建商品
      * @param item
      * @param businessId
      * @return
@@ -77,7 +76,7 @@ public class BusinessService extends LogicService<BusinessDao, Business,Long> {
 
 
     /**
-     * 商家在门店确认已支付的订单
+     * 商家确认已支付的订单
      * @param orderId
      */
     @Transactional
@@ -91,7 +90,7 @@ public class BusinessService extends LogicService<BusinessDao, Business,Long> {
     }
 
     /**
-     * 商家在门店取消已支付的订单
+     * 商家取消已支付的订单
      * @param orderId
      * @return
      */
@@ -107,7 +106,7 @@ public class BusinessService extends LogicService<BusinessDao, Business,Long> {
 
 
     /**
-     * 商家上架门店商品
+     * 商家上架已加入门店的商品
      * @param shopItemId
      */
     @Transactional

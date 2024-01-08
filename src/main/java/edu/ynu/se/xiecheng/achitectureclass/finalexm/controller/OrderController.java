@@ -22,6 +22,12 @@ public class OrderController extends LogicController<OrderService, OrderDao, Ord
         super(service);
     }
 
+    /**
+     * 列出订单的订单详项
+     * 对应前端payOrder页面的getLineItems
+     * @param orderId
+     * @return
+     */
     @ApiOperation("列出订单项")
     @PostMapping("/listLineItems/{orderId}")
     public List<LineItem> listLineItem(@ApiParam @PathVariable Long orderId){

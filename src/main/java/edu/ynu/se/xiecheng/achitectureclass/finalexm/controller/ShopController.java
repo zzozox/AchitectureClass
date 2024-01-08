@@ -22,6 +22,7 @@ public class ShopController extends LogicController<ShopService, ShopDao, Shop,L
 
     /**
      * 商家在门店上架商品
+     * 对应前端newShopItem页面的onsaleItem
      * @param itemId
      * @param shopId
      */
@@ -35,6 +36,7 @@ public class ShopController extends LogicController<ShopService, ShopDao, Shop,L
 
     /**
      * 列出商家的门店下所有订单
+     * 对应前端showOrders页面的getOrders
      * @param shopId
      * @return
      */
@@ -46,6 +48,8 @@ public class ShopController extends LogicController<ShopService, ShopDao, Shop,L
 
     /**
      * 列出门店所有商品
+     * 对应前端shopItems页面的getShopItems
+     * 对应前端chooseItem页面的getShopItems
      * @param shopId
      * @return
      */

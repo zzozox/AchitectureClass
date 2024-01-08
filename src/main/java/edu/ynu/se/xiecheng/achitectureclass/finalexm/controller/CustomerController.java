@@ -19,7 +19,7 @@ public class CustomerController extends LogicController<CustomerService, Custome
 
     /**
      * 顾客登录
-     * 登陆成功则返回值为0
+     * 对应前端登录页面的login
      * @param customerName
      * @param password
      * @return
@@ -33,6 +33,7 @@ public class CustomerController extends LogicController<CustomerService, Custome
 
     /**
      * 顾客下单
+     * 对应前端chooseItem页面的placeOrder
      * @param shopItemId
      * @param customerId
      * @return
@@ -47,6 +48,7 @@ public class CustomerController extends LogicController<CustomerService, Custome
 
     /**
      * 顾客支付订单
+     * 对应前端payOrder页面的payOrder
      * @param orderId
      */
     @ApiOperation("顾客支付订单")
@@ -58,6 +60,7 @@ public class CustomerController extends LogicController<CustomerService, Custome
     /**
      * 顾客取消未支付的订单
      * 逻辑删除
+     * 对应前端payOrder页面的cancelOrder
      * @param orderId
      * @return
      */

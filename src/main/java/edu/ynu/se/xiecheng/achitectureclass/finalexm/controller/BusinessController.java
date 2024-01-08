@@ -22,7 +22,7 @@ public class BusinessController extends LogicController<BusinessService, Busines
 
     /**
      * 商家登录
-     * 登陆成功则返回值为1
+     * 对应前端登录页面的login
      * @param businessName
      * @param password
      * @return
@@ -35,7 +35,9 @@ public class BusinessController extends LogicController<BusinessService, Busines
     }
 
     /**
-     * 查看门店
+     * 商家查看门店
+     * 对应前端showShops页面的getShops
+     * 对应前端customer/index页面的getShops
      * @param businessId
      * @return
      */
@@ -47,6 +49,7 @@ public class BusinessController extends LogicController<BusinessService, Busines
 
     /**
      * 新建门店
+     * 对应前端newShop页面的createShop
      * @param shopName
      * @param shopImg
      * @param businessId
@@ -64,6 +67,7 @@ public class BusinessController extends LogicController<BusinessService, Busines
 
     /**
      * 新建商品
+     * 对应前端newItem页面的createItem
      * @param itemName
      * @param itemImg
      * @param businessId
@@ -83,6 +87,7 @@ public class BusinessController extends LogicController<BusinessService, Busines
 
     /**
      * 商家在门店确认已支付的订单
+     * 对应前端showOrders页面的confirmOrder
      * @param orderId
      */
     @ApiOperation("商家确认已支付订单")
@@ -93,6 +98,7 @@ public class BusinessController extends LogicController<BusinessService, Busines
 
     /**
      * 商家在门店取消已支付的订单
+     * 对应前端showOrders页面的cancelOrder
      * @param orderId
      * @return
      */
@@ -105,6 +111,7 @@ public class BusinessController extends LogicController<BusinessService, Busines
 
     /**
      * 商家上架门店商品
+     * 对应前端shopItems页面的onsaleShopItem
      * @param shopItemId
      */
     @ApiOperation("商家上架门店商品")
@@ -113,6 +120,12 @@ public class BusinessController extends LogicController<BusinessService, Busines
         getService().onsaleShopItem(shopItemId);
     }
 
+    /**
+     * 列出所有商家商品
+     * 对应前端showItems页面的getItems
+     * @param businessId
+     * @return
+     */
     @ApiOperation("列出商家商品")
     @PostMapping("/listItems/{businessId}")
     public List<Item> listItems(@ApiParam @PathVariable Long businessId){

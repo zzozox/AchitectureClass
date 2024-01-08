@@ -125,13 +125,17 @@ public class Business extends User {
     }
 
     /**
-     * 商家上架门店商品
+     * 商家上架已加入门店的商品
      * @param shopItem
      */
     public void onsaleShopItem(ShopItem shopItem){
         shopItem.setOnsale(true);
     }
 
+    /**
+     * 列出商家商品
+     * @return
+     */
     public List<Item> listItems(){
         return new ArrayList<>(items);
     }

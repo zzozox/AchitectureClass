@@ -61,7 +61,7 @@ public class Shop extends LogicEntity {
     }
 
     /**
-     * 商家在门店上架商品
+     * 门店上架商品
      * @param item
      * @return
      */
@@ -78,7 +78,7 @@ public class Shop extends LogicEntity {
     }
 
     /**
-     * 列出门店订单
+     * 列出门店所有订单
      * @return
      */
     public List<Order> listOrders(){

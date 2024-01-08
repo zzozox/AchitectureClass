@@ -24,7 +24,7 @@ public class ShopService extends LogicService<ShopDao, Shop,Long> {
     ItemDao itemDao;
 
     /**
-     * 商家在门店上架商品
+     * 门店上架商品
      * @param itemId
      * @param shopId
      */
@@ -38,7 +38,7 @@ public class ShopService extends LogicService<ShopDao, Shop,Long> {
     }
 
     /**
-     * 列出商家的门店下所有订单
+     * 列出门店所有订单
      * @param shopId
      * @return
      */

@@ -25,7 +25,6 @@ public class Order extends LogicEntity {
     @Column
     @ColumnDefault("false")
     private boolean payState;
-
     /**
      * 订单确认状态
      * 1为已确认
@@ -34,7 +33,6 @@ public class Order extends LogicEntity {
      */
     @Column
     private Integer confirm;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("orders")
     @JsonIgnore
@@ -73,7 +71,7 @@ public class Order extends LogicEntity {
     }
 
     /**
-     * 列出order的具体订单项
+     * 列出订单的具体订单项
      * @return
      */
     public List<LineItem> listLineItems(){

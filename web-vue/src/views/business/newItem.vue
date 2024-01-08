@@ -17,6 +17,24 @@ const createItem=()=>{
     router.push('/showItems')
   })
 }
+const getFile = (file) => {
+  getBase64(file.raw)
+      .then(res => {
+        newItem.value.shopImg=res
+      })
+      .catch(error => {
+        console.error('Error converting to Base64:', error);
+      });
+};
+
+const getBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+};
 </script>
 
 <template>
@@ -24,7 +42,17 @@ const createItem=()=>{
     <Left class="sidebar"></Left>
     <div class="right-content">
       <el-input v-model="newItem.itemName" placeholder="商品名"></el-input>
-      <el-input v-model="newItem.itemImg" placeholder="商品图片"></el-input>
+<!--      <el-input v-model="newItem.itemImg" placeholder="商品图片"></el-input>-->
+      <el-upload
+          list-type="picture-card"
+          action=""
+          accept=".jpg, .png"
+          :limit="1"
+          :auto-upload="false"
+          @change="getFile"
+      >
+        <i class="el-icon-plus"></i>
+      </el-upload>
       <el-button @click="createItem">新建</el-button>
     </div>
   </div>

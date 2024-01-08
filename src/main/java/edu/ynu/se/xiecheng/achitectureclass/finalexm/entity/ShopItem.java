@@ -24,12 +24,10 @@ public class ShopItem extends LogicEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("shopItems")
-    @JsonIgnore
     private Shop shop;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("shopItems")
-    @JsonIgnore
     private Item item;
 
     @OneToMany(mappedBy = "shopItem",

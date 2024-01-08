@@ -6,11 +6,16 @@ import {useRoute} from "vue-router";
 import Header from "@/views/customer/Header.vue";
 const route=useRoute();
 const orderId=route.query.orderId
+const Price=ref(0)
 const customerId=sessionStorage.getItem("customerId")
 const lineItemArr=ref([])
 const getLineItems=()=>{
   axios.post(`/order/listLineItems/${orderId}`,{orderId:orderId}).then(responde=>{
     lineItemArr.value=responde.data;
+    for (const item of lineItemArr.value){
+      Price.value=item.order.totalPrice
+    }
+    console.log(lineItemArr.value)
   })
 }
 const payOrder=()=>{
@@ -33,12 +38,13 @@ onMounted(()=>{
   <Header></Header>
   <ul>
     <li v-for="item in lineItemArr" :key="item.id">
-      <span>商品{{ item.id }}</span>
-      <span>数量{{ item.quantity }}</span>
+      <img :src="item.shopItem.item.itemImg" alt="">
+      <span>  {{item.shopItem.item.itemName}}</span>
+      <span>  数量:{{ item.quantity }}</span>
     </li>
   </ul>
   <div class="buttons-container">
-    <el-button @click="payOrder">支付</el-button>
+    <el-button @click="payOrder">支付 {{Price}} 元</el-button>
     <el-button @click="cancelOrder">取消</el-button>
   </div>
 </template>
@@ -76,7 +82,13 @@ li span:first-child {
 li span:nth-child(2) {
   /* 可以添加特定样式，如果需要的话 */
 }
-
+/* 图片样式 */
+img {
+  width: 50px; /* 图像宽度 */
+  height: 50px; /* 图像高度 */
+  border-radius: 50%; /* 圆形图片 */
+  margin-right: 10px; /* 图像和文本之间的间距 */
+}
 
 /* 按钮容器样式 */
 .buttons-container {

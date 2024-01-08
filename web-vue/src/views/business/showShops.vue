@@ -9,6 +9,7 @@ const shopArr=ref([])
 const getShops=()=>{
   axios.post(`/business/listShops/${businessId}`,{businessId:businessId}).then(response=>{
     shopArr.value=response.data;
+    console.log(shopArr.value)
   })
 }
 const toShop=(item)=>{

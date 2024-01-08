@@ -22,6 +22,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Shop extends LogicEntity {
     @Column
     private String shopName;
+    //数据库类型为MEDIUMTEXT
     @Column
     private String shopImg;
 

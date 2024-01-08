@@ -37,7 +37,7 @@ onMounted(()=>{
           <div class="order-info">
             <!-- 订单信息 -->
             <span>订单{{ item.id }}</span>
-            <span>总价{{ item.totalPrice }}</span>
+            <span>    总价{{ item.totalPrice }}</span>
           </div>
           <div>
             <!-- 根据订单状态显示的按钮 -->

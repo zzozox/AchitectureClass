@@ -11,7 +11,7 @@ const shopItemArr=ref([])
 const getShopItems = () => {
   axios.post(`/shop/listShopItems/${shopId}`, {shopId: shopId}).then(response => {
     shopItemArr.value = response.data;
-    // quantity.value = new Array(shopItemArr.value.length).fill(0); // 初始化 quantity 数组
+    console.log(shopItemArr.value)
   })
 }
 const quantity=ref()
@@ -32,7 +32,9 @@ onMounted(()=>{
   <Header></Header>
   <ul>
     <li v-for="item in shopItemArr" :key="item.id" v-show="item.onsale">
-      <span>商品{{item.id}}</span>
+      <img :src="item.item.itemImg" alt="">
+      <span>{{item.item.itemName}}</span>
+      <span>  价格：{{item.shopItemPrice}}</span>
       <div class="item-actions">
         <el-input v-model="quantity" placeholder="购买数量"></el-input>
         <el-button @click="placeOrder(item)">购买</el-button>
@@ -67,7 +69,13 @@ li span {
   font-size: 16px;
   margin-right: 20px;
 }
-
+/* 图片样式 */
+img {
+  width: 50px; /* 图像宽度 */
+  height: 50px; /* 图像高度 */
+  border-radius: 50%; /* 圆形图片 */
+  margin-right: 10px; /* 图像和文本之间的间距 */
+}
 /* 操作区域容器样式 */
 .item-actions {
   display: flex;

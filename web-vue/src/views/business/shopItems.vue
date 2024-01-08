@@ -10,6 +10,7 @@ const shopItemArr=ref([])
 const getShopItems=()=>{
   axios.post(`/shop/listShopItems/${shopId}`,{shopId:shopId}).then(response=>{
     shopItemArr.value=response.data;
+    console.log(shopItemArr.value)
   })
 }
 const onsaleShopItem=(item)=>{
@@ -38,9 +39,9 @@ onMounted(()=>{
       <ul class="shop-list">
         <li v-for="item in shopItemArr" :key="item.id">
           <div class="item-content">
-<!--            <img :src="item.shopImg" alt="">-->
-<!--            <span>{{ item.shopName }}</span>-->
-            <span>商品{{item.id}}</span>
+            <img :src="item.item.itemImg" alt="">
+            <span>{{ item.item.itemName }}</span>
+<!--            <span>商品{{item.id}}</span>-->
           </div>
           <el-button v-if="item.onsale">已上架</el-button>
           <el-button v-if="!item.onsale" @click="onsaleShopItem(item)">上架</el-button>

@@ -21,6 +21,7 @@ public class Item extends LogicEntity {
     private Double itemPrice;
     @Column
     private String Description;
+    //数据库类型为MEDIUMTEXT
     @Column String itemImg;
 
     @ManyToOne(fetch = FetchType.LAZY)

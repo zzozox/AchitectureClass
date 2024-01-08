@@ -21,11 +21,9 @@ public class LineItem extends LogicEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("lineItems")
-    @JsonIgnore
     private Order order;
 
     @ManyToOne(fetch =FetchType.LAZY)
     @JsonIgnoreProperties("lineItems")
-    @JsonIgnore
     private ShopItem shopItem;
 }

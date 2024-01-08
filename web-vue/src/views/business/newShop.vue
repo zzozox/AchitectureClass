@@ -17,6 +17,24 @@ const createShop=()=>{
     router.push('/business')
   })
 }
+const getFile = (file) => {
+  getBase64(file.raw)
+      .then(res => {
+        newShop.value.shopImg=res
+      })
+      .catch(error => {
+        console.error('Error converting to Base64:', error);
+      });
+};
+
+const getBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+};
 </script>
 
 <template>
@@ -24,7 +42,17 @@ const createShop=()=>{
     <Left class="sidebar"></Left>
     <div class="right-content">
       <el-input v-model="newShop.shopName" placeholder="门店名"></el-input>
-      <el-input v-model="newShop.shopImg" placeholder="门店图片"></el-input>
+<!--      <el-input v-model="newShop.shopImg" placeholder="门店图片"></el-input>-->
+      <el-upload
+          list-type="picture-card"
+          action=""
+          accept=".jpg, .png"
+          :limit="1"
+          :auto-upload="false"
+          @change="getFile"
+      >
+        <i class="el-icon-plus"></i>
+      </el-upload>
       <el-button @click="createShop">新建</el-button>
     </div>
   </div>

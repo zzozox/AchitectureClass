@@ -31,7 +31,7 @@ onMounted(()=>{
 <template>
   <Header></Header>
   <ul>
-    <li v-for="(item, index) in shopItemArr" :key="index" v-show="item.onsale">
+    <li v-for="item in shopItemArr" :key="item.id" v-show="item.onsale">
       <span>商品{{item.id}}</span>
       <div class="item-actions">
         <el-input v-model="quantity" placeholder="购买数量"></el-input>

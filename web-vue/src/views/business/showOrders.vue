@@ -17,10 +17,10 @@ const toShopItems=()=>{
   router.push({path:'/shopItems',query:{shopId:shopId}})
 }
 const confirmOrder=(item)=>{
-  axios.post(`/business/confirmOrder/${item.id}`,{orderId:item.id})
+  axios.post(`/business/confirmOrder/${item.id}`,{orderId:item.id}).then(()=>{getOrders()})
 }
 const cancelOrder=(item)=>{
-  axios.post(`/business/cancelOrder/${item.id}`,{orderId:item.id})
+  axios.post(`/business/cancelOrder/${item.id}`,{orderId:item.id}).then(()=>{getOrders()})
 }
 onMounted(()=>{
   getOrders()
@@ -33,7 +33,7 @@ onMounted(()=>{
     <div class="content-area">
       <el-button @click="toShopItems">查看商品</el-button>
       <ul class="order-list">
-        <li v-for="(item, index) in orderArr" :key="index">
+        <li v-for="item in orderArr" :key="item">
           <div class="order-info">
             <!-- 订单信息 -->
             <span>订单{{ item.id }}</span>

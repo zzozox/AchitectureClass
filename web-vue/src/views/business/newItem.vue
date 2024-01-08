@@ -19,12 +19,6 @@ const createItem=()=>{
 }
 </script>
 
-<!--<template>-->
-<!--  <Left></Left>-->
-<!--  <el-input v-model="newItem.itemName" placeholder="商品名"></el-input>-->
-<!--  <el-input v-model="newItem.itemImg" placeholder="商品图片"></el-input>-->
-<!--  <el-button @click="createItem">新建</el-button>-->
-<!--</template>-->
 <template>
   <div class="app-container">
     <Left class="sidebar"></Left>

@@ -13,7 +13,9 @@ const getShopItems=()=>{
   })
 }
 const onsaleShopItem=(item)=>{
-  axios.post(`/business/onsaleShopItem/${item.id}`,{shopItemId:item.id})
+  axios.post(`/business/onsaleShopItem/${item.id}`,{shopItemId:item.id}).then(()=>{
+    getShopItems()
+  })
 }
 const newShopItem=()=>{
   router.push({path:'/newShopItem',query:{shopId:shopId}})
@@ -34,7 +36,7 @@ onMounted(()=>{
         <el-button @click="toOrders">查看订单</el-button>
       </div>
       <ul class="shop-list">
-        <li v-for="(item, index) in shopItemArr" :key="index">
+        <li v-for="item in shopItemArr" :key="item.id">
           <div class="item-content">
 <!--            <img :src="item.shopImg" alt="">-->
 <!--            <span>{{ item.shopName }}</span>-->

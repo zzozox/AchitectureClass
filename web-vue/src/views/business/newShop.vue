@@ -8,10 +8,10 @@ const newShop=ref({
   shopName:'',
   shopImg:'',
 })
-const createItem=()=>{
+const createShop=()=>{
   const params=new URLSearchParams()
   params.append('shopName',newShop.value.shopName)
-  params.append('shopName',newShop.value.shopName)
+  params.append('shopImg',newShop.value.shopImg)
   params.append('businessId',businessId)
   axios.post(`/business/createShop`,params).then(()=>{
     router.push('/business')
@@ -25,7 +25,7 @@ const createItem=()=>{
     <div class="right-content">
       <el-input v-model="newShop.shopName" placeholder="门店名"></el-input>
       <el-input v-model="newShop.shopImg" placeholder="门店图片"></el-input>
-      <el-button @click="createItem">新建</el-button>
+      <el-button @click="createShop">新建</el-button>
     </div>
   </div>
 </template>

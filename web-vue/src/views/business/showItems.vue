@@ -17,7 +17,7 @@ onMounted(()=>{
   <div class="app-container">
     <Left class="sidebar"></Left>
     <ul class="shop-list">
-      <li v-for="(item, index) in itemArr" :key="index">
+      <li v-for="item in itemArr" :key="item.id">
         <img :src="item.itemImg" alt="">
         <span>{{ item.itemName }}</span>
       </li>

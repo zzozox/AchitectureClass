@@ -32,7 +32,7 @@ onMounted(()=>{
 <template>
   <Header></Header>
   <ul>
-    <li v-for="(item, index) in lineItemArr" :key="index">
+    <li v-for="item in lineItemArr" :key="item.id">
       <span>商品{{ item.id }}</span>
       <span>数量{{ item.quantity }}</span>
     </li>

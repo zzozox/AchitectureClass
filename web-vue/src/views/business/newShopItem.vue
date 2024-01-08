@@ -3,6 +3,7 @@ import Left from "@/views/business/Left.vue";
 import axios from "axios";
 import {ref,onMounted} from "vue";
 import {useRoute} from "vue-router";
+import router from "@/router/index.js";
 const route=useRoute();
 
 const shopId=route.query.shopId;
@@ -19,29 +20,21 @@ const onsaleItem=(item)=>{
   params.append('itemId',item.id)
   params.append('shopId',shopId)
   params.append('price',price.value)
-  axios.post(`/shop/onsaleItem`,params)
+  axios.post(`/shop/onsaleItem`,params).then(()=>{
+    router.push({path:'/shopItems',query:{shopId:shopId}})
+  })
 }
 onMounted(()=>{
   getItems()
 })
 </script>
 
-<!--<template>-->
-<!--  <Left></Left>-->
-<!--  <ul>-->
-<!--    <li v-for="(item,index) in itemArr" :key="index">-->
-<!--      {{item.itemName}}-->
-<!--      <el-input v-model="price" placeholder="价格"></el-input>-->
-<!--      <el-button @click="onsaleItem(item)">新增</el-button>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</template>-->
 <template>
   <div class="app-container">
     <Left class="sidebar"></Left>
     <div class="content-area">
       <ul class="item-list">
-        <li v-for="(item, index) in itemArr" :key="index">
+        <li v-for="item in itemArr" :key="item.id">
           <span>{{ item.itemName }}</span>
           <div class="item-actions">
             <el-input v-model="price" placeholder="价格"></el-input>
